@@ -20,9 +20,9 @@ export CGO_ENABLED=0
 echo "-> building..."
 gox \
     -os="${XC_OS}" \
-    -arch="${XC_ARCH}" \
+    -arch="${XC_ARCH}" \cd /output
     -osarch="${XC_EXCLUDE_OSARCH}" \
-    -output "output/{{.OS}}_{{.Arch}}/terraform-provider-jira" \
+    -output "output/{{.OS}}_{{.Arch}}/aruredevops" \
     .
 
 # Zip and copy to the dist dir
