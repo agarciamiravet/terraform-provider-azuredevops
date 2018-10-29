@@ -3,7 +3,7 @@
 
         
         builds:
-                - main: ./main.go
+                - binary: terrafor-provider-azuredevops{{.version}}
                   goos:
                               - linux
                                     - darwin
