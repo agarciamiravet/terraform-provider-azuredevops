@@ -5,7 +5,6 @@ import (
 	azuredevopsapi "github.com/agarciamiravet/go-azuredevopsapi"
 )
 
-// resourceIssue is used to define a JIRA issue
 func resourceAzureDevOpsProject() *schema.Resource {
 	return &schema.Resource{
 		Create: resourceProjectCreate,
