@@ -1,0 +1,70 @@
+project_name: terraform-provider-azuredevops
+release:
+  github:
+    owner: agarciamiravet
+    name: terraform-provider-azuredevops
+  name_template: '{{.Tag}}'
+brew:
+  name: terraform-provider-azuredevops
+  commit_author:
+    name: goreleaserbot
+    email: goreleaser@carlosbecker.com
+scoop:
+  name: terraform-provider-azuredevops
+  commit_author:
+    name: goreleaserbot
+    email: goreleaser@carlosbecker.com
+  url_template: https://github.com/agarciamiravet/terraform-provider-azuredevops/releases/download/{{
+    .Tag }}/{{ .ArtifactName }}
+builds:
+- goos:
+  - linux - darwin - windows
+  goarch:
+  - 386 - amd64 - arm - arm64
+  goarm:
+  - "6"
+  main: ./main.go
+  ldflags:
+  - -s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{.Date}}
+  binary: terraform-provider-azuredevops
+  env:
+  - CGO_ENABLED=0
+  lang: go
+archive:
+  name_template: '{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}{{ if .Arm
+    }}v{{ .Arm }}{{ end }}'
+  format: tar.gz
+  files:
+  - licence*
+  - LICENCE*
+  - license*
+  - LICENSE*
+  - readme*
+  - README*
+  - changelog*
+  - CHANGELOG*
+nfpm:
+  name_template: '{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}{{ if .Arm
+    }}v{{ .Arm }}{{ end }}'
+  bindir: /usr/local/bin
+snapcraft:
+  name_template: '{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}{{ if .Arm
+    }}v{{ .Arm }}{{ end }}'
+snapshot:
+  name_template: SNAPSHOT-{{ .Commit }}
+checksum:
+  name_template: '{{ .ProjectName }}_{{ .Version }}_checksums.txt'
+dist: dist
+sign:
+  cmd: gpg
+  args:
+  - --output
+  - $signature
+  - --detach-sig
+  - $artifact
+  signature: ${artifact}.sig
+  artifacts: none
+env_files:
+  github_token: ~/.config/goreleaser/github_token
+github_urls:
+  download: https://github.com
