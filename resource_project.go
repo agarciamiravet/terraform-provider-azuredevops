@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/hashicorp/terraform/helper/schema"
+	azuredevopsapi "github.com/agarciamiravet/go-azuredevopsapi"
 )
 
 // resourceIssue is used to define a JIRA issue
@@ -39,6 +40,15 @@ func resourceAzureDevOpsProject() *schema.Resource {
 }
 
 func resourceProjectCreate(d *schema.ResourceData, m interface{}) error {
+
+	organization := d.Get("organization").(string)
+	pat := d.Get("pat").(string)
+	projectname := d.Get("projectname").(string)
+	
+	data := azuredevopsapi.CreateProject(pat, organization, projectname)
+
+	d.SetId(data.ID)
+
 	return resourceProjectRead(d, m)
 }
 
