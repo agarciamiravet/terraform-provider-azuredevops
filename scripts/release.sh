@@ -20,9 +20,9 @@ export CGO_ENABLED=0
 echo "-> building..."
 gox \
     -os="${XC_OS}" \
-    -arch="${XC_ARCH}" \cd /output
+    -arch="${XC_ARCH}" \
     -osarch="${XC_EXCLUDE_OSARCH}" \
-    -output "output/{{.OS}}_{{.Arch}}/aruredevops" \
+    -output "output/{{.OS}}_{{.Arch}}/terraform-provider-azuredevops" \
     .
 
 # Zip and copy to the dist dir
@@ -33,7 +33,7 @@ for PLATFORM in $(find ./output -mindepth 1 -maxdepth 1 -type d); do
     echo "--> ${OSARCH}"
 
     pushd $PLATFORM >/dev/null 2>&1
-    zip ../terraform-provider-aruredevops_${OSARCH}.zip ./*
+    zip ../terraform-provider-azuredevops_${OSARCH}.zip ./*
     popd >/dev/null 2>&1
 done
 
