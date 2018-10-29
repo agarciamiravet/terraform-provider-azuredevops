@@ -16,3 +16,6 @@ dist/
 bin/
 
 output/
+
+# Instalation files
+terraform-provider-azuredevops*
