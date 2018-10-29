@@ -11,7 +11,7 @@ This repository contains a provider to work with Azure devOps. Now I only create
 
 resource "azuredevops_project" "projectTest" {
 
-     oraganization = "[organization_azuredevops_name]"
+     organization = "[organization_azuredevops_name]"
      pat = "[Personal_access_toke_in_base64]"
      projectname = "[name_project_to_create]"
      description = "[description_project]"
