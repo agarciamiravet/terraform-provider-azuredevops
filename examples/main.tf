@@ -1,8 +1,16 @@
 resource "azuredevops_project" "projectTest" {
 
-     oraganization = "1.2.3.4"
-     pat = "1.2.3.4"
-     projectname = "1.2.3.4"
-     description = "1.2.3.4"
-     summary = "1.2.3.4"
+     oraganization = "MyOrganization"
+     pat = "PersonalAccessToken"
+     projectname = "Projectname"
+     description = "Description"
+     summary = "Summary"
+}
+
+resource "azuredevops_workitemtask" "terraformworkitemtest" {
+
+     oraganization = "MyOrganization"
+     pat = "PersonalAccessToken"
+     projectname = "Projectname"
+     title = "My First Work Item"     
 }
