@@ -8,8 +8,8 @@ import (
 func Provider() *schema.Provider {
 	return &schema.Provider{
 		ResourcesMap: map[string]*schema.Resource{
-			"azuredevops_project": resourceAzureDevOpsProject(),
+			"azuredevops_project":      resourceAzureDevOpsProject(),
+			"azuredevops_workitemtask": resourceAzureDevOpsWorkItemTask(),
 		},
 	}
 }
-
