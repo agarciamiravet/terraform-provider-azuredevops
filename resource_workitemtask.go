@@ -15,14 +15,6 @@ func resourceAzureDevOpsWorkItemTask() *schema.Resource {
 		Delete: resourceWorkItemDelete,
 
 		Schema: map[string]*schema.Schema{
-			"organization": &schema.Schema{
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"pat": &schema.Schema{
-				Type:     schema.TypeString,
-				Required: true,
-			},
 			"projectname": &schema.Schema{
 				Type:     schema.TypeString,
 				Required: true,
@@ -38,12 +30,14 @@ func resourceAzureDevOpsWorkItemTask() *schema.Resource {
 
 func resourceWorkItemCreate(d *schema.ResourceData, m interface{}) error {
 
-	organization := d.Get("organization").(string)
-	pat := d.Get("pat").(string)
+	provider := m.(*Client)
+
+	//organization := d.Get("organization").(string)
+	//pat := d.Get("pat").(string)
 	projectname := d.Get("projectname").(string)
 	title := d.Get("title").(string)
 
-	data := azuredevopsapi.CreateWorkItem(pat, organization, projectname, title)
+	data := azuredevopsapi.CreateWorkItem(provider.config.Pat, provider.config.Organization, projectname, title)
 
 	d.SetId(strconv.Itoa(data.ID))
 

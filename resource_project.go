@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/hashicorp/terraform/helper/schema"
 	azuredevopsapi "github.com/agarciamiravet/go-azuredevopsapi"
+	"github.com/hashicorp/terraform/helper/schema"
 )
 
 func resourceAzureDevOpsProject() *schema.Resource {
@@ -13,14 +13,6 @@ func resourceAzureDevOpsProject() *schema.Resource {
 		Delete: resourceProjectDelete,
 
 		Schema: map[string]*schema.Schema{
-			"organization": &schema.Schema{
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"pat": &schema.Schema{
-				Type:     schema.TypeString,
-				Required: true,
-			},
 			"projectname": &schema.Schema{
 				Type:     schema.TypeString,
 				Required: true,
@@ -40,11 +32,13 @@ func resourceAzureDevOpsProject() *schema.Resource {
 
 func resourceProjectCreate(d *schema.ResourceData, m interface{}) error {
 
-	organization := d.Get("organization").(string)
-	pat := d.Get("pat").(string)
+	provider := m.(*Client)
+
+	//organization := d.Get("organization").(string)
+	//pat := d.Get("pat").(string)
 	projectname := d.Get("projectname").(string)
-	
-	data := azuredevopsapi.CreateProject(pat, organization, projectname)
+
+	data := azuredevopsapi.CreateProject(provider.config.Pat, provider.config.Organization, projectname)
 
 	d.SetId(data.ID)
 
