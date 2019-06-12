@@ -2,6 +2,11 @@
 
 
 This repository contains a provider to work with Azure devOps.Next weeks I will update with new resources like create repositories, work items ...  
+
+# Warning
+
+Before using a token you need encode it in base64.
+
 # Resources
 
 - azuredevops_project: 
