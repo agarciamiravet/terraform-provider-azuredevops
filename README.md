@@ -5,7 +5,7 @@ This repository contains a provider to work with Azure devOps.Next weeks I will 
 
 # Warning
 
-Before using a token you need encode it in base64.
+Before using the token you need encode it in base64.
 
 # Resources
 
